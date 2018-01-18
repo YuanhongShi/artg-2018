@@ -120,6 +120,9 @@ d3.csv('./data/hubway_trips_reduced.csv', parse, function(err,trips){
 	4.1 Create a nested array, where trips are nested by departure station (i.e. station0)
 	YOUR CODE HERE:
 	***/
+	const departureStation = d3.nest().key(function(d){return d.station0}).entries(trips);
+	console.log('This is a nested arrary.');
+	console.log(departureStation);
 
 	/***
 	4.2 Further "collapse" this array, so that for each departure stations, we have the number of trips departing from each
@@ -127,12 +130,48 @@ d3.csv('./data/hubway_trips_reduced.csv', parse, function(err,trips){
 	YOUR CODE HERE:
 	***/
 
+	const lengthDeparture = d3.nest().key(function(d){return d.station0}).rollup(function(v){return v.length}).entries(trips);
+	console.log(lengthDeparture);
+
 	/***
 	5.0 BONUS Question
 	Can you answer 2.1 and 2.2 without using d3's built-in max and min methods?
 	Hint: Javascript has a built-in Math.max(...) function
 	YOUR CODE HERE:
 	***/
+	/*** aternative method for 2.1
+	Using Javascript built-in Math.max() function
+	***/
+
+
+	const durationArray = trips.map(function(d){return d.duration;});
+	console.log(durationArray);
+
+	let max = -Infinity;
+	let min = +Infinity;
+
+for (let i = 0; i < durationArray.length; i++) {
+  if (durationArray[i] > max) {
+    max = durationArray[i];
+  }
+  if (durationArray[i] < min) {
+    min = durationArray[i];
+  }
+}
+
+console.log(max, min);
+
+	
+
+	//const longestDurationMath = maxInArray(durationArray);
+	console.log('Here is the other way to get the longest duration: ' +max);
+	console.log('Here is the other way to get the shortest duration: ' +min);
+	
+
+	/*** aternative method for 2.2
+	Using Javascript built-in Math.min() function
+	***/
+
 
 	
 });
