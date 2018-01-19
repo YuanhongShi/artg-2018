@@ -130,6 +130,8 @@ d3.csv('./data/hubway_trips_reduced.csv', parse, function(err,trips){
 	YOUR CODE HERE:
 	***/
 
+
+
 	const lengthDeparture = d3.nest().key(function(d){return d.station0}).rollup(function(v){return v.length}).entries(trips);
 	console.log(lengthDeparture);
 
