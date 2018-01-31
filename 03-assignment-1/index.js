@@ -5,7 +5,9 @@ console.log('Week 3 Assignment 1');
 const trips = fetch('./data/hubway_trips_reduced.csv');
 console.log(trips);
 //YOUR CODE HERE:
+
 //Access the resolution value of the fetch call with Promise.prototype.then
+
 trips
 //	.then(/*MODIFY THIS*/);
 
@@ -18,6 +20,7 @@ const number2 = number
 	.then(function(x){ return x * 4})
 	.then(function(x){ return x - 3})
 //What is the resolution value of number2? Is it what you expected? 
+console.log('number2 is ' number2);
 
 //3.3
 //Transforming Promise object

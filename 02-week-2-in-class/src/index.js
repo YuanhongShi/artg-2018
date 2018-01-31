@@ -55,7 +55,7 @@ d3.csv('./data/hubway_trips_reduced.csv', parse, function(err,trips){
 
 
 	//scale
-	const scaleX = d3.scaleLinear().domain(0, maxVolume).range(0, _w);
+	const scaleX = d3.scaleLinear().domain([0, maxVolume]).range([0, _w]);
 
 	//Represent / DOM manipulation
 	const svgNode = d3.select('.module')
@@ -76,7 +76,7 @@ d3.csv('./data/hubway_trips_reduced.csv', parse, function(err,trips){
 		.append('g')
 		.attr('class', 'station')	//selection of <g.station> x 142
 		.attr('transform', function(d, i){
-			return `translate(0, ${i*_h/tripVolumeBystation0.length})`
+			return `translate(0, ${i*_h/tripVolumeBystation0.length})`;
 		});
 
 	stationNodes
@@ -88,7 +88,6 @@ d3.csv('./data/hubway_trips_reduced.csv', parse, function(err,trips){
 		.attr('height', _h/tripVolumeBystation0.length - padding)
 		.style('fill', 'red');
 
-	console.log('hererere!!!');
 
 	stationNodes
 		.append('text')
