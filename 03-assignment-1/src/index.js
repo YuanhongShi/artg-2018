@@ -68,6 +68,19 @@ function activityHistogram(data){
 
 	//Draw
 	/*** YOUR CODE HERE ***/
+	 // bar
+ const barXNode = d3.select(this)
+  .selectAll('rect')
+  .data(tripsByQuarterHour);
+ const barXNodeEnter = barXNode.enter()
+  .append('rect')
+  .attr('class', 'bar')
+  .attr("x", 1);
+ barXNode.merge(barXNodeEnter)
+  .attr('transform', d => { return `translate(${scaleX(d.x0)}, ${scaleY(d.volume)})`; })
+   .attr("width", d => { return scaleX(d.x1) - scaleX(d.x0) -1; })
+   .attr("height", d => { return h - scaleY(d.volume); });
+
 
 
 
