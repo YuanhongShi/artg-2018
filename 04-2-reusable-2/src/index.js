@@ -7,14 +7,27 @@ import parse from './parse';
 import Histogram from './Histogram';
 
 console.log('Week 4 exercise 2');
-
+const customHistogram = Histogram(300);
 //Create instances of this reusable module
 const activityHistogramMain = Histogram();
 const activityHistogramMultiple = Histogram();
 const durationHistogramMain = Histogram();
 
+activityHistogramMain
+	.maxVolume(3000)
+	.margin({t:20,r:100,b:50,l:100});
+
+activityHistogramMain
+	.ticksY(6)
+	.defaultColor('rgb(0,0,255)');
+
 //Import and parse data
 d3.csv('./data/hubway_trips_reduced.csv', parse, function(err,trips){
+
+	d3.select('#activity-histogram')
+		.style('background', 'red')
+		.datum({key:'all station', values: trips})
+		.each(activityHistogramMain);
 
 	//Nest trips by origin station
 	const tripsByStation0 = d3.nest()
@@ -30,10 +43,6 @@ d3.csv('./data/hubway_trips_reduced.csv', parse, function(err,trips){
 		.style('height','180px')
 		.style('float','left');
 	stationNodes.merge(stationNodesEnter)
-		.each(function(d,i){
-			console.log(d);
-			console.log(i);
-			console.log(this);
-		}); 
+		.each(customHistogram); 
 
 });

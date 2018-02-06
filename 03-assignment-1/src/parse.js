@@ -6,8 +6,8 @@ export default function(d){
 	return {
 		t0: t0,
 		t1: t1,
-		time_of_day0: t0.getHours() + t0.getMinutes()/60,
-		time_of_day1: t1.getHours() + t1.getHours()/60,
+		time_of_day0: t0.getHours() + t0.getMinutes()/60, //start time of the trip
+		time_of_day1: t1.getHours() + t1.getMinutes()/60, //end time of the trip
 		station0: d.strt_statn,
 		station1: d.end_statn,
 		duration: +d.duration,

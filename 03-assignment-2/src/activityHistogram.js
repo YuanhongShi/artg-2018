@@ -1,6 +1,11 @@
 import * as d3 from 'd3';
 
-export default function activityHistogram(data){
+export default function activityHistogram(data,i){
+
+
+	console.log(data);
+	console.log(i);
+	console.log(this);//the div container
 
 	//Need to append a the proper DOM scaffolding
 	const width = this.clientWidth; //What is "this"?
@@ -10,14 +15,14 @@ export default function activityHistogram(data){
 	const h = height - margin.t - margin.b;
 
 	const svg = d3.select(this)
-		.selectAll('svg')
+		.selectAll('svg')//selection size of 0
 		.data([1]); //What's going on here?
-	const svgEnter = svg.enter().append('svg')
+	const svgEnter = svg.enter().append('svg') //update() + enter()
 		.attr('width',width)
 		.attr('height',height);
 	svgEnter.append('g').attr('class','plot')
 
-	const plot = svg.merge(svgEnter)
+	const plot = svg.merge(svgEnter) //merge 这个功能很重要！！！搞搞清楚enter(), update(), exit()这几个概念
 		.select('.plot')
 		.attr('transform',`translate(${margin.l},${margin.t})`);
 
@@ -26,14 +31,14 @@ export default function activityHistogram(data){
 	const histogram = d3.histogram()
 		.value(d => d.time_of_day0)
 		.thresholds(d3.range(0,24,.25));
-	const tripsByQuarterHour = histogram(data.values)
+	const tripsByQuarterHour = histogram(data.values) //data.values are the data histogram wanted, has to be an arrary
 		.map(d => {
 			return {
 				x0:d.x0, //left bound of the bin; 18.25 => 18:15
 				x1:d.x1,
 				volume:d.length
 			}
-		});
+		});//'bin'
 
 	//Set up scales in the x and y direction
 	const scaleX = d3.scaleLinear().domain([0,24]).range([0,w]);
@@ -104,6 +109,7 @@ export default function activityHistogram(data){
 	axisYNode.merge(axisYNodeEnter)
 		.call(axisY);
 
+	//check for this part
 	axisYNodeEnter.select('.domain').style('display','none');
 	axisYNodeEnter.selectAll('line')
 		.style('stroke','rgb(80,80,80)')
