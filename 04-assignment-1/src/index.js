@@ -10,6 +10,10 @@ console.log('Week 4 exercise 2');
 
 const timeline = Timeline();
 
+timeline
+	.defaultFill('green')
+	.defaultStroke('blue');
+
 
 //Import and parse data
 d3.csv('./data/hubway_trips_reduced.csv', parse, function(err,trips){
@@ -19,7 +23,7 @@ d3.csv('./data/hubway_trips_reduced.csv', parse, function(err,trips){
 		.key(function(d){ return d.station0 })
 		.entries(trips);
 
-	console.log(tripsByStation0);
+	//console.log(tripsByStation0);
 
 	const stationNodes = d3.select('#timeline-multiple')
 		.selectAll('.station-node')

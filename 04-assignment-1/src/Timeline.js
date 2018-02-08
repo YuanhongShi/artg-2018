@@ -2,6 +2,9 @@ import * as d3 from 'd3';
 
 function Timeline(_){
 
+	let defaultFill = 'black';
+	let defaultStroke = 'red';
+
 	function exports(data,i){
 		const width = this.clientWidth;
 		const height = this.clientHeight;
@@ -58,6 +61,8 @@ function Timeline(_){
 			.data([tripsByInterval]);
 		const areaNodeEnter = areaNode.enter()
 			.append('path')
+			.style('fill',defaultFill)
+			.style('stroke',defaultStroke)
 			.attr('class','area');
 		areaNodeEnter.merge(areaNode)
 			.attr('d',areaGenerator);
@@ -87,6 +92,16 @@ function Timeline(_){
 
 	exports.maxVolume = function(_){
 
+	}
+
+	exports.defaultFill = function(_){
+		defaultFill = _;
+		return this;
+	}
+
+	exports.defaultStroke = function(_){
+		defaultStroke = _;
+		return this;
 	}
 
 	return exports;
