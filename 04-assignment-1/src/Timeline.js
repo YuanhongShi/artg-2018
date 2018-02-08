@@ -4,6 +4,9 @@ function Timeline(_){
 
 	let defaultFill = 'black';
 	let defaultStroke = 'red';
+	let maxVolume = 80;
+	let timeRange = [new Date(2012,0,1), new Date(2012,11,31)];
+	let timeInterval = d3.timeWeek;
 
 	function exports(data,i){
 		const width = this.clientWidth;
@@ -14,8 +17,8 @@ function Timeline(_){
 
 		//Data transformation
 		//Bin the trips by week
-		const timeInterval = d3.timeWeek;
-		const timeRange = [new Date(2012,0,1), new Date(2012,11,31)];
+		//const timeInterval = d3.timeWeek;
+		//const timeRange = [new Date(2012,0,1), new Date(2012,11,31)];
 		const thresholds = timeInterval.range(timeRange[0], timeRange[1], 1);
 
 		const histogram = d3.histogram()
@@ -33,7 +36,8 @@ function Timeline(_){
 
 		//Mine the data and set up scales
 		const scaleX = d3.scaleTime().domain(timeRange).range([0,w]);
-		const maxVolume = d3.max(tripsByInterval, d => d.volume);
+		//const maxVolume = d3.max(tripsByInterval, d => d.volume);
+		//console.log(maxVolume);
 		const scaleY = d3.scaleLinear().domain([0, maxVolume]).range([h,0]);
 
 		//Shape generator
@@ -83,14 +87,19 @@ function Timeline(_){
 	}
 
 	exports.timeRange = function(_){
+		timeRange = _;
+		return this;
 
 	}
 
 	exports.timeInterval = function(_){
-
+		timeInterval = _;
+		return this;
 	}
 
 	exports.maxVolume = function(_){
+		maxVolume = _;
+		return this;
 
 	}
 

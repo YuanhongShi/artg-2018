@@ -12,7 +12,10 @@ const timeline = Timeline();
 
 timeline
 	.defaultFill('green')
-	.defaultStroke('blue');
+	.defaultStroke('blue')
+	.maxVolume(75)
+	.timeInterval(d3.timeWeek)
+	.timeRange([new Date(2012,2,1), new Date(2012,11,31)])
 
 
 //Import and parse data
