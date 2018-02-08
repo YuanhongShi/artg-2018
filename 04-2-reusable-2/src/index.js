@@ -14,18 +14,18 @@ const activityHistogramMultiple = Histogram();
 const durationHistogramMain = Histogram();
 
 activityHistogramMain
-	.maxVolume(3000)
+	.maxVolume(5000)
 	.margin({t:20,r:100,b:50,l:100});
 
 activityHistogramMain
 	.ticksY(6)
-	.defaultColor('rgb(0,0,255)');
+	.defaultColor('rgb(50,50,0)');
 
 //Import and parse data
 d3.csv('./data/hubway_trips_reduced.csv', parse, function(err,trips){
 
 	d3.select('#activity-histogram')
-		.style('background', 'red')
+		.style('background', 'pink')
 		.datum({key:'all station', values: trips})
 		.each(activityHistogramMain);
 

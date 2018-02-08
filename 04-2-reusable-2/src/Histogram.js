@@ -128,13 +128,12 @@ function Histogram(_){
 		.style('stroke','rgb(80,80,80)')
 		.style('stroke-dasharray','2px 2px');
 
-
 	}
 
 	//setter and getter functions
 
 	exports.width = function(_){
-		
+
 
 	}
 

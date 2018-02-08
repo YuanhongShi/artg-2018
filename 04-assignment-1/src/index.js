@@ -8,6 +8,8 @@ import Timeline from './Timeline';
 
 console.log('Week 4 exercise 2');
 
+const timeline = Timeline();
+
 
 //Import and parse data
 d3.csv('./data/hubway_trips_reduced.csv', parse, function(err,trips){
@@ -16,6 +18,8 @@ d3.csv('./data/hubway_trips_reduced.csv', parse, function(err,trips){
 	const tripsByStation0 = d3.nest()
 		.key(function(d){ return d.station0 })
 		.entries(trips);
+
+	console.log(tripsByStation0);
 
 	const stationNodes = d3.select('#timeline-multiple')
 		.selectAll('.station-node')
