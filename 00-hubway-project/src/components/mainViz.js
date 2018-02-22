@@ -28,7 +28,7 @@ function MainViz(_){
 			.entries(data)
 			.map(d => {
 				return d.values;
-			});	//sort怎么做
+			});	//sort怎么做？
 
 		console.log(tripsByStation);
 		//Create a node for each station
