@@ -36,6 +36,7 @@ function activityHistogram(data){
 	const histogram = d3.histogram()
 		.value(d => d.time_of_day0)
 		.thresholds(d3.range(0,24,.25));
+<<<<<<< HEAD
 
 	//debug information for the function
 	console.log(data);
@@ -43,6 +44,8 @@ function activityHistogram(data){
 	console.log(data);	//the input data has been changed after histogram function
 	//end of the debug information 
 
+=======
+>>>>>>> siqi/dev
 	const tripsByQuarterHour = histogram(data)
 		.map(d => {
 			return {
@@ -61,12 +64,21 @@ function activityHistogram(data){
 	//Set up axis generator
 	const axisY = d3.axisLeft()
 		.scale(scaleY)
+<<<<<<< HEAD
 		.tickSize(-w); //check the meaning!!!!!!
 
 	const axisX = d3.axisBottom()
 		.scale(scaleX) //check the scale() function
 		.tickFormat(d => {	//format each of the tick
 			const time = +d; 
+=======
+		.tickSize(-w);
+
+	const axisX = d3.axisBottom()
+		.scale(scaleX)
+		.tickFormat(d => {
+			const time = +d;
+>>>>>>> siqi/dev
 			const hour = Math.floor(time);
 			let min = Math.round((time-hour)*60);
 			min = String(min).length === 1? "0"+ min : min;
@@ -74,6 +86,7 @@ function activityHistogram(data){
 		});
 
 	//Draw
+<<<<<<< HEAD
 	/*** YOUR CODE HERE ***/
 	 // bar
 	 /* code of the professor
@@ -119,10 +132,42 @@ function activityHistogram(data){
    .attr("height", d => { return h - scaleY(d.volume); });
 
 	/*** YOUR CODE HERE ***/
+=======
+	//YOUR CODE HERE
+
+	//Bars
+	//Update
+	const binsUpdate = d3.select(this)
+		.selectAll('.bin')
+		.data(tripsByQuarterHour);
+
+	//Enter
+	const binsEnter = binsUpdate.enter()
+		.append('rect')
+		.attr('class','bin') //If you forget this, what will happen if we re-run this the activityHistogram function?
+		.attr('x', d => scaleX(d.x0))
+		.attr('width', d => (scaleX(d.x1) - scaleX(d.x0) - 1))
+		.attr('y', d => h)
+		.attr('height', 0);
+
+	//Enter + update
+	binsEnter.merge(binsUpdate)
+		.transition()
+		.duration(500)
+		.attr('x', d => scaleX(d.x0))
+		.attr('width', d => (scaleX(d.x1) - scaleX(d.x0) - 1))
+		.attr('y', d => scaleY(d.volume))
+		.attr('height', d => (h - scaleY(d.volume)))
+		.style('fill','rgb(180,180,180)');
+
+	//Exit
+	binsUpdate.exit().remove();
+>>>>>>> siqi/dev
 
 	//Axis
 	const axisXNode = d3.select(this)
 		.selectAll('.axis-x')
+<<<<<<< HEAD
 		.data([1]);	//data array of 1 element //make sure there is only one element 
 		//enter set will be size 1
 		//exit 0
@@ -136,6 +181,15 @@ function activityHistogram(data){
 		.attr('transform',`translate(0,${h})`)
 		.call(axisX);
 		//draw the axis on <g.axis-x>
+=======
+		.data([1]);
+	const axisXNodeEnter = axisXNode.enter()
+		.append('g')
+		.attr('class','axis-x');
+	axisXNode.merge(axisXNodeEnter)
+		.attr('transform',`translate(0,${h})`)
+		.call(axisX);
+>>>>>>> siqi/dev
 
 	const axisYNode = d3.select(this)
 		.selectAll('.axis-y')

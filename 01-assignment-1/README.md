@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 # Review of npm and git (updated on Jan 11 2018)
+=======
+# Review of npm and git
+>>>>>>> siqi/dev
 
 Both Git/github and npm are tools we'll use extensively throughout the class. We'll have many opportunities to practice with their use, and this brief assignment will get you up to speed.
 
@@ -10,6 +14,7 @@ Please install the latest versions of the following on your computer
 
 Please also sign up for a Github account if you don't already have one.
 
+<<<<<<< HEAD
 ## Work flow 1: getting started with the course repo
 This workflow lets you copy the course material "repo" (repository) to under your own Github account and get started with work in this course. This way, any changes you make to the repo will stay your own, without changing the master repo.
 
@@ -60,3 +65,8 @@ git push [remote repo name] [local branch name]
 ## Work flow 3: setting up your own git repo and adding remote origin
 
 ## Work flow 4: working with branches
+=======
+## Basic workflow: cloning the code base for this class
+Make sure you have the required software installed and log into Github. Navigate to to the course repo, and click on the "fork" button.
+
+>>>>>>> siqi/dev

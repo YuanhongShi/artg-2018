@@ -64,7 +64,11 @@ d3.csv('./data/hubway_trips_reduced.csv', parse, function(err,data){
 	d3.select('#bottom').on('click', function(){
 		d3.event.preventDefault();
 
+<<<<<<< HEAD
 		redraw(tripsByStation0.sort(function(a,b){return a.trips - b.trips}).slice(0,80), plot);
+=======
+		redraw(tripsByStation0.sort(function(a,b){return b.trips - a.trips}).slice(-80), plot);
+>>>>>>> siqi/dev
 	});
 
 });
@@ -73,6 +77,7 @@ function redraw(data, plot){
 
 	console.log(data);
 
+<<<<<<< HEAD
 	//This currently doesn't update properly
 	//Refractor this code to make it conformant with enter/exit/update pattern
 	//YOUR CODE HERE:
@@ -80,11 +85,22 @@ function redraw(data, plot){
 		.selectAll('.bar')
 		.data(data)
 		.enter()
+=======
+	//Solution here:
+	//UPDATE SET
+	const bars = plot		
+		.selectAll('.bar')
+		.data(data, d => { return d.key }) //join by key, which is station id;
+
+	//ENTER SET
+	const barsEnter = bars.enter()
+>>>>>>> siqi/dev
 		.append('g')
 		.attr('class','bar')
 		.attr('transform', (d,i) => {
 			return `translate(0,${i*10})`
 		});
+<<<<<<< HEAD
 	bars.append('rect')
 		.attr('width',function(d){
 			return scaleX(d.trips);
@@ -92,10 +108,37 @@ function redraw(data, plot){
 		.attr('height', 9)
 		.style('opacity',.3);
 	bars.append('text')
+=======
+	//Append DOM with the ENTER SET
+	barsEnter.append('rect')
+		.attr('height',9)
+		.attr('width',0)
+		.style('opacity',0);
+	barsEnter.append('text')
+>>>>>>> siqi/dev
 		.attr('text-anchor','end')
 		.style('font-size','8px')
 		.attr('x',-5)
 		.attr('dy',4)
 		.text(d => {return d.key});
 
+<<<<<<< HEAD
+=======
+	//UPDATE + ENTER SET
+	barsEnter.merge(bars)
+		.transition()
+		.attr('transform', (d,i) => {
+			return `translate(0,${i*10})`
+		})
+		.select('rect')
+		.attr('width',function(d){
+			return scaleX(d.trips);
+		})
+		.attr('height', 9)
+		.style('opacity',.3);
+
+	//EXIT SET
+	bars.exit().remove();
+
+>>>>>>> siqi/dev
 }

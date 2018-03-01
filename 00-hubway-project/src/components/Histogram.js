@@ -1,22 +1,6 @@
 import * as d3 from 'd3';
 import '../style/histogram.css';
 
-<<<<<<< HEAD
-
-
-function Histogram(_){
-	//factory function
-	let _thresholds;
-	let _domain;
-	let _value = () => {}; //function
-	let _tickY = 5;
-	let _tickX = 6;
-	let _tickXFormat = d => d; //function 
-	let _maxY = -Infinity;
-
-	function exports(data,i){
-		const root = this;	//div element
-=======
 function Histogram(_){
 	//factory function
 
@@ -30,7 +14,6 @@ function Histogram(_){
 
 	function exports(data,i){
 		const root = this;
->>>>>>> siqi/master
 
 		const width = root.clientWidth; 
 		const height = root.clientHeight;
@@ -39,11 +22,7 @@ function Histogram(_){
 		const h = height - margin.t - margin.b;
 
 		const svg = d3.select(root)
-<<<<<<< HEAD
-			.classed('histogram',true)	//不会覆盖之前定义的class
-=======
 			.classed('histogram',true)
->>>>>>> siqi/master
 			.selectAll('svg')
 			.data([1]); //What's going on here?
 		const svgEnter = svg.enter().append('svg')
@@ -59,44 +38,27 @@ function Histogram(_){
 		//Group trips into discrete 15 minute bins, using the d3.histogram layout
 		const histogram = d3.histogram()
 			.value(_value)
-<<<<<<< HEAD
-			.thresholds(_thresholds)	//specify the domain is a little bit sensitive
-=======
 			.thresholds(_thresholds)
->>>>>>> siqi/master
 			.domain(_domain);
 		const tripsByQuarterHour = histogram(data)
 			.map(d => {
 				return {
 					x0:d.x0, //left bound of the bin; 18.25 => 18:15
 					x1:d.x1,
-<<<<<<< HEAD
-					volume:d.length	//just change the name of the data, not change the structure of data, just make it more readable
-=======
 					volume:d.length
->>>>>>> siqi/master
 				}
 			});
 
 		//Set up scales in the x and y direction
 		const scaleX = d3.scaleLinear().domain(_domain).range([0,w]);
 		const maxVolume = d3.max(tripsByQuarterHour, d => d.volume);
-<<<<<<< HEAD
-		const scaleY = d3.scaleLinear().domain([0,Math.max(_maxY, maxVolume)]).range([h,0]);
-=======
 		const scaleY = d3.scaleLinear().domain([0, Math.max(_maxY,maxVolume)]).range([h,0]);
->>>>>>> siqi/master
 
 		//Set up axis generator
 		const axisY = d3.axisLeft()
 			.scale(scaleY)
-<<<<<<< HEAD
-			.tickSize(-w)	//定义这个dash line的方向的
-			.ticks(_tickY);	
-=======
 			.tickSize(-w)
 			.ticks(_tickY);
->>>>>>> siqi/master
 
 		const axisX = d3.axisBottom()
 			.scale(scaleX)
@@ -153,24 +115,6 @@ function Histogram(_){
 			.call(axisY);
 	}
 
-<<<<<<< HEAD
-	exports.thresholds = function(_){
-		//_ is an array of thresholds
-		if(typeof _ === 'undefine') return _thresholds;
-		_thresholds = _;
-		return this;		
-		//为什么没有return还是能工作？return this是为了在index.js里直接用
-		/*
-		activityHistogram
-		.thresholds(d3.range(0,24,.25))
-		.domain([9,21]);
-		*/
-		//这个格式，因为每次call这个setting, getting function后返回的还是一个function，才能继续custom这个设置
-	}
-
-	exports.domain = function(_){
-		if(typeof _ === 'undefine') return _domain;
-=======
 	//Getter/setter
 	exports.thresholds = function(_){
 		//_ is an array of thresholds
@@ -181,48 +125,30 @@ function Histogram(_){
 
 	exports.domain = function(_){
 		if(typeof _ == 'undefined') return _domain;
->>>>>>> siqi/master
 		_domain = _;
 		return this;
 	}
 
-<<<<<<< HEAD
-	exports.value = function(fn){	//argument of fn is setting to be readable for other people
-		if(typeof fn === 'undefine') return _value;
-=======
 	exports.value = function(fn){
 		if(typeof fn ==='undefined') return _value;
->>>>>>> siqi/master
 		_value = fn;
 		return this;
 	}
 
 	exports.tickX = function(_){
-<<<<<<< HEAD
-		if(typeof _ === 'undefine') return _tickX;
-=======
 		if(typeof _ ==='undefined') return _tickX;
->>>>>>> siqi/master
 		_tickX = _;
 		return this;
 	}
 
 	exports.tickY = function(_){
-<<<<<<< HEAD
-		if(typeof _ === 'undefine') return _tickY;
-=======
 		if(typeof _ ==='undefined') return _tickY;
->>>>>>> siqi/master
 		_tickY = _;
 		return this;
 	}
 
 	exports.tickXFormat = function(fn){
-<<<<<<< HEAD
-		if(typeof fn === 'undefine') return _tickXFormat;
-=======
 		if(typeof fn ==='undefined') return _tickXFormat;
->>>>>>> siqi/master
 		_tickXFormat = fn;
 		return this;
 	}
@@ -232,11 +158,7 @@ function Histogram(_){
 	}
 
 	exports.maxY = function(_){
-<<<<<<< HEAD
-		if(typeof _ === 'undefine') return _maxY;
-=======
 		if(typeof _ === 'undefined') return _maxY;
->>>>>>> siqi/master
 		_maxY = _;
 		return this;
 	}
