@@ -66,11 +66,15 @@ d3.select(document.querySelector('body'))
 d3.select(document.getElementById('dummy-button'))
 	.on('click', function(d){
 		console.group('---2.6---');
-		console.log(this); //what is "this"?
+		console.log(this); //what is "this"
 		console.groupEnd();
+		
+
 
 		//YOUR CODE HERE
 		//How do you change the html content of the button to "I'm clicked?"
+		d3.select(this).text("I'm clicked?");
+		
 	});
 
 

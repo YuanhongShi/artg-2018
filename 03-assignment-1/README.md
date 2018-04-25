@@ -1,6 +1,5 @@
 # Week 3 Assignment 1 - Trip Activity by Time of the Day
 
-<<<<<<< HEAD
 With this assignment, you will build a visualization of Hubway activity levels by time of the day, using the `d3.histogram` layout module. First, if you don't know what is a histogram, please read up on it [here](https://en.wikipedia.org/wiki/Histogram). 
 
 ![Histogram](./trip-activities.jpg?raw=true "trip activities")
@@ -15,18 +14,11 @@ git checkout remotes/upstream/master 03-assignment-1
 ```
 
 Navigate to `/03-assignment-1` folder, then run:
-=======
-With minimal modifications, the code we produced for in-class activity 3 can be used to display a histogram of time activity by time of the day. 
-
-## To start the project
-Navigate to `/03-assignment-2` folder, then run:
->>>>>>> siqi/dev
 ```
 npm start
 ```
 
 ## In `parse.js`
-<<<<<<< HEAD
 Note that this function now produces two additional data attributes per trip: `time_of_day_0` and `time_of_day_1`. Without even knowing the syntax of how `Date` objects work, you should be able to guess that these two attributes represent, in decimals, what time of the day this trip took place. For example, 23.5 == 11:30PM.
 
 ## In `index.js`
@@ -64,9 +56,3 @@ Lines 70-77 is your main task. Here, build out the histogram with `<rect>` eleme
 
 ### Using the `d3.axis` generators
 Can you look up lines 80-102 and figure out what's happening?
-=======
-Note that this function now produces two additional data attributes per trip: `time_of_day_0` and `time_of_day_1`. Using a histogram layout, you can bin the array of trips based on either one of these attributes.
-
-## In `index.js`
-Please follow best practice with the enter - exit - update pattern when appending DOM elements.
->>>>>>> siqi/dev
