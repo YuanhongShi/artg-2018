@@ -4,7 +4,7 @@ import * as d3 from 'd3';
 import './style.css';
 
 import parse from './parse';
-import timeline from './Timeline';
+import Timeline from './Timeline';
 
 console.log('Week 4 exercise 2');
 

@@ -1,4 +1,4 @@
-import * as d3 from 'd3';
+   import * as d3 from 'd3';
 import './style.css';
 
 import parse from './parse';
@@ -68,6 +68,32 @@ function activityHistogram(data){
 
 	//Draw
 	/*** YOUR CODE HERE ***/
+	const binsUpdate = plot
+			.selectAll('.bin')
+			.data(tripsByQuarterHour);
+
+	//Enter
+	const binsEnter = binsUpdate.enter()
+		.append('rect')
+		.attr('class','bin') //If you forget this, what will happen if we re-run this the activityHistogram function?
+		.attr('x', d => scaleX(d.x0))
+		.attr('width', d => (scaleX(d.x1) - scaleX(d.x0)))
+		.attr('y', d => h)
+		.attr('height', 0);
+
+	//Enter + update
+	binsEnter.merge(binsUpdate)
+		.transition()
+		.duration(1000)
+		.attr('x', d => scaleX(d.x0))
+		.attr('width', d => (scaleX(d.x1) - scaleX(d.x0)))
+		.attr('y', d => scaleY(d.volume))
+		.attr('height', d => (h - scaleY(d.volume)))
+		.style('fill','rgba(255,192,203,.3)')
+		.style('stroke','rgba(255,255,255,1)');
+
+	//Exit
+	binsUpdate.exit().remove();
 
 
 

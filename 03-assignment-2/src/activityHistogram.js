@@ -1,45 +1,23 @@
 import * as d3 from 'd3';
 
-<<<<<<< HEAD
-export default function activityHistogram(data,i){
-
-
-	console.log(data);
-	console.log(i);
-	console.log(this);//the div container
-
-	//Need to append a the proper DOM scaffolding
-	const width = this.clientWidth; //What is "this"?
-=======
 export default function activityHistogram(data){
 
 	//Need to append a the proper DOM scaffolding
-	const width = this.clientWidth;
->>>>>>> siqi/dev
+	const width = this.clientWidth; //What is "this"?
 	const height = this.clientHeight;
 	const margin = {t:15,r:25,b:25,l:25};
 	const w = width - margin.l - margin.r;
 	const h = height - margin.t - margin.b;
 
 	const svg = d3.select(this)
-<<<<<<< HEAD
-		.selectAll('svg')//selection size of 0
-		.data([1]); //What's going on here?
-	const svgEnter = svg.enter().append('svg') //update() + enter()
-=======
 		.selectAll('svg')
-		.data([1]);
+		.data([1]); //What's going on here?
 	const svgEnter = svg.enter().append('svg')
->>>>>>> siqi/dev
 		.attr('width',width)
 		.attr('height',height);
 	svgEnter.append('g').attr('class','plot')
 
-<<<<<<< HEAD
-	const plot = svg.merge(svgEnter) //merge 这个功能很重要！！！搞搞清楚enter(), update(), exit()这几个概念
-=======
 	const plot = svg.merge(svgEnter)
->>>>>>> siqi/dev
 		.select('.plot')
 		.attr('transform',`translate(${margin.l},${margin.t})`);
 
@@ -48,22 +26,14 @@ export default function activityHistogram(data){
 	const histogram = d3.histogram()
 		.value(d => d.time_of_day0)
 		.thresholds(d3.range(0,24,.25));
-<<<<<<< HEAD
-	const tripsByQuarterHour = histogram(data.values) //data.values are the data histogram wanted, has to be an arrary
-=======
 	const tripsByQuarterHour = histogram(data.values)
->>>>>>> siqi/dev
 		.map(d => {
 			return {
 				x0:d.x0, //left bound of the bin; 18.25 => 18:15
 				x1:d.x1,
 				volume:d.length
 			}
-<<<<<<< HEAD
-		});//'bin'
-=======
 		});
->>>>>>> siqi/dev
 
 	//Set up scales in the x and y direction
 	const scaleX = d3.scaleLinear().domain([0,24]).range([0,w]);
@@ -86,11 +56,6 @@ export default function activityHistogram(data){
 		});
 
 	//Draw
-<<<<<<< HEAD
-=======
-	//YOUR CODE HERE
-
->>>>>>> siqi/dev
 	//Bars
 	//Update
 	const binsUpdate = plot
@@ -139,10 +104,6 @@ export default function activityHistogram(data){
 	axisYNode.merge(axisYNodeEnter)
 		.call(axisY);
 
-<<<<<<< HEAD
-	//check for this part
-=======
->>>>>>> siqi/dev
 	axisYNodeEnter.select('.domain').style('display','none');
 	axisYNodeEnter.selectAll('line')
 		.style('stroke','rgb(80,80,80)')
