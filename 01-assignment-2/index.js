@@ -16,7 +16,6 @@ function parse(d){
 		subsc_type: "subsc_type" of type String
 	}
 	**/
-<<<<<<< HEAD
 
 	return {
 		station0: d.strt_statn,
@@ -27,17 +26,6 @@ function parse(d){
 		duration: +d.duration,
 		subsc_type: d.subsc_type
 	};
-=======
-	return {
-		t0:new Date(d.start_date),
-		t1:new Date(d.end_date),
-		station0:d.strt_statn,
-		station1:d.end_statn,
-		duration:+d.duration,
-		bike_nr:d.bike_nr,
-		subsc_type:d.subsc_type
-	}
->>>>>>> siqi/dev
 }
 
 d3.csv('./data/hubway_trips_reduced.csv', parse, function(err,trips){
@@ -52,27 +40,19 @@ d3.csv('./data/hubway_trips_reduced.csv', parse, function(err,trips){
 	Hint: use d3.max()
 	YOUR CODE HERE:
 	***/
-<<<<<<< HEAD
+	
 	console.log('There are ' + trips.length + ' trips.');
 	console.log(`There are ${trips.length} trips.`);
 
 	const longestDuration = d3.max(trips, function(d){ return d.duration }); //MODIFY THIS
 	const longestDuration2 = d3.max( trips.map(function(d){ return d.duration}) );
 	console.log(`Longest trip duration is ${longestDuration/3600} hours`);
-=======
-	const longestDuration = d3.max(trips, function(d){ return d.duration; }); //MODIFY THIS
-	console.log(`Longest trip duration is ${longestDuration}`);
->>>>>>> siqi/dev
 
 	/***
 	2.2 What about the shortest trip?
 	YOUR CODE HERE:
 	***/
-<<<<<<< HEAD
 	const shortestDuration = d3.min(trips, function(d){return d.duration }); //MODIFY THIS
-=======
-	const shortestDuration = d3.min(trips, function(d){ return d.duration; }); //MODIFY THIS
->>>>>>> siqi/dev
 	console.log(`Shortest trip duration is ${shortestDuration}`);
 
 	/***
@@ -80,13 +60,8 @@ d3.csv('./data/hubway_trips_reduced.csv', parse, function(err,trips){
 	Please look at the definition of "mean" and "median" if you are not entirely sure of the difference
 	YOUR CODE HERE:
 	***/
-<<<<<<< HEAD
-	const meanDuration = undefined; //MODIFY THIS
-	const medianDuration = undefined; //MODIFY THIS
-=======
-	const meanDuration = d3.mean(trips, function(d){ return d.duration; }); //MODIFY THIS
-	const medianDuration = d3.median(trips, function(d){ return d.duration; }); //MODIFY THIS
->>>>>>> siqi/dev
+	const meanDuration = d3.mean(trips,function(d){return d.duration}); //MODIFY THIS
+	const medianDuration = d3.median(trips,function(d){return d.duration}); //MODIFY THIS
 	console.log(`Median duration is ${medianDuration} seconds; mean duration is ${meanDuration} seconds`);
 
 	/***
@@ -96,21 +71,11 @@ d3.csv('./data/hubway_trips_reduced.csv', parse, function(err,trips){
 	Hint: use Array.prototype.filter
 	YOUR CODE HERE:
 	***/
-<<<<<<< HEAD
 	const registeredTrips = trips.filter(function(d){return d.subsc_type==='Registered'});
 	const casualTrips = trips.filter(function(d){return d.subsc_type==='Casual'});
 	console.log(registeredTrips);
 	console.log(casualTrips);
 	console.log(registeredTrips === trips); //As you can see, Array.prototype.filter produces an entirely new array
-=======
-	const registeredTrips = trips.filter(function(d){ return d.subsc_type==='Registered'});
-	const casualTrips = trips.filter( function(d){ return d.subsc_type==='Casual'});
-	console.group('3.1');
-	console.log(registeredTrips);
-	console.log(casualTrips);
-	console.log(registeredTrips === trips); //As you can see, Array.prototype.filter produces an entirely new array
-	console.groupEnd();
->>>>>>> siqi/dev
 
 	/**
 	3.2 Sort registeredTrips by descending trip duration (i.e. longest trips first)
@@ -118,17 +83,9 @@ d3.csv('./data/hubway_trips_reduced.csv', parse, function(err,trips){
 	YOUR CODE HERE:
 	***/
 	const sortedRegisteredTrips = registeredTrips.sort(function(a,b){return b.duration - a.duration});
-<<<<<<< HEAD
 	console.log(registeredTrips);
 	console.log(sortedRegisteredTrips);
 	console.log(registeredTrips === sortedRegisteredTrips);
-=======
-	console.group('3.2');
-	console.log(registeredTrips);
-	console.log(sortedRegisteredTrips);
-	console.log(registeredTrips === sortedRegisteredTrips);
-	console.groupEnd();
->>>>>>> siqi/dev
 	//Why are both arrays sorted?
 	//As you can see, Array.prototype.sort does NOT produce a new array, but instead modifies the existing array in place
 
@@ -137,28 +94,15 @@ d3.csv('./data/hubway_trips_reduced.csv', parse, function(err,trips){
 	Hint: use Array.prototype.slice
 	YOUR CODE HERE:
 	***/
-<<<<<<< HEAD
 	const top10RegisteredTrips = registeredTrips.slice(5,9);
 	const bottom10RegisteredTrips = registeredTrips.slice(-10);
 	console.log(top10RegisteredTrips);
 	console.log(bottom10RegisteredTrips);
-=======
-	const top10RegisteredTrips = registeredTrips.slice(0,10);
-	const bottom10RegisteredTrips = registeredTrips.slice(-10);
-	console.group('3.3');
-	console.log(top10RegisteredTrips);
-	console.log(bottom10RegisteredTrips);
-	console.groupEnd();
->>>>>>> siqi/dev
 	/**
 	3.3.1 Without reading documentation, how could you ascertain if Array.prototype.slice behaves more like filter or sort?
 	Does Array.prototype.slice create a new array, or modify existing arrays in place?
 	YOUR CODE HERE:
 	***/
-<<<<<<< HEAD
-=======
-	console.log(top10RegisteredTrips === bottom10RegisteredTrips); //should return false
->>>>>>> siqi/dev
 
 	/**
 	3.4 Instead of an array of trips, generate a completely new array of departure timestamps (i.e. t0)
@@ -175,28 +119,12 @@ d3.csv('./data/hubway_trips_reduced.csv', parse, function(err,trips){
 	4.1 Create a nested array, where trips are nested by departure station (i.e. station0)
 	YOUR CODE HERE:
 	***/
-<<<<<<< HEAD
-=======
-	const tripsByStation0 = d3.nest()
-		.key(function(d){return d.station0})
-		.entries(trips);
-	console.log(tripsByStation0);
->>>>>>> siqi/dev
 
 	/***
 	4.2 Further "collapse" this array, so that for each departure stations, we have the number of trips departing from each
 	Hint: there are multiple ways of doing this, including using d3.nest.rollup, but attempt this with what we've learned in this assignment
 	YOUR CODE HERE:
 	***/
-<<<<<<< HEAD
-=======
-	const tripVolumeByStation0 = tripsByStation0.map(function(d){
-		return {
-			key:d.key,
-			tripVolume:d.values.length
-		}
-	});
->>>>>>> siqi/dev
 
 	/***
 	5.0 BONUS Question
@@ -204,14 +132,8 @@ d3.csv('./data/hubway_trips_reduced.csv', parse, function(err,trips){
 	Hint: Javascript has a built-in Math.max(...) function
 	YOUR CODE HERE:
 	***/
-<<<<<<< HEAD
 
 	
 });
 
 console.log('After d3.csv');
-=======
-	const max = Math.max(...tripVolumeByStation0.map(function(d){return d.tripVolume}));
-	
-});
->>>>>>> siqi/dev

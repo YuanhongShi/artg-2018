@@ -1,4 +1,4 @@
-import {csv} from 'd3'; //import * from 'd3': import everything from d3
+import {csv} from 'd3';
 
 export const parse = d => {
 	const t0 = new Date(d.start_date);
@@ -48,7 +48,7 @@ export const parseStation = d => {
 
 export const fetchCsv = (url, parse) => {
 	return new Promise((resolve, reject) => {
-		csv(url, parse, (err, data) => {//import {csv} from 'd3': only import the csv part of d3
+		csv(url, parse, (err, data) => {
 			if(err){
 				reject(err);
 			}else{
@@ -57,5 +57,3 @@ export const fetchCsv = (url, parse) => {
 		})
 	});
 }
-
-//fetchCsv: return a promise (a holder for future value: data of csv), url is str (address of csv file)

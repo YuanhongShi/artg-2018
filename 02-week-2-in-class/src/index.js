@@ -10,11 +10,14 @@ console.log('Week 2 in class ...');
 //Import and parse data
 d3.csv('./data/hubway_trips_reduced.csv', parse, function(err,trips){
 
+	console.log(trips);
 	//Data transformation, discovery, and mining
 	const tripsByStation0 = d3.nest()
 		.key(function(d){ return d.station0 })
 		.entries(trips);
 
+	console.log(tripsByStation0);
+	
 	const tripVolumeByStation0 = tripsByStation0.map(function(d){
 
 		/**
