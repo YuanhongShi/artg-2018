@@ -24,6 +24,7 @@ const somePromise = new Promise(function(resolve, reject){
 	resolve(5);
 	/*** YOUR CODE HERE ***/
 
+
 }); //Note that this Promise will resolve a value of 5, and will never reject
 console.log(somePromise);
 
@@ -38,7 +39,12 @@ somePromise.then(function(res){
 //Construct a Promise object that immediate resolves a string "Hello world"
 
 /*** YOUR CODE HERE ***/
+const myPromise = new Promise(function(resolve,rejct){
 
+	resolve("Hello World");
+});
+
+console.log(myPromise);
 
 
 /*** YOUR CODE HERE ***/
@@ -54,8 +60,17 @@ const rejectHelloWorld = Promise.reject(new Error("Hello world"));
 //How do you access the resolved "Hello world" and rejected error from above? Please console.log them out
 
 /*** YOUR CODE HERE ***/
-
-
+resolveHelloWorld.then(function(res){
+	console.log('The resolution value of promise is ' + res);
+});
+// Promise.reject(new Error('Hello World')).then(function(){
+// 	//
+// },function(err){
+// 	console.log(err);
+// });
+rejectHelloWorld.then(function(){}, function(err){
+	console.log(err);
+});
 
 /*** YOUR CODE HERE ***/
 
